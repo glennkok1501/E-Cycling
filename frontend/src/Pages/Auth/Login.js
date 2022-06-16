@@ -1,29 +1,52 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { Button, Card, Container, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import Error from '../../Components/Error/Error';
+import { setUser } from '../../redux/features/userSlice';
 import './auth.css'
-
 
 const Login = () => {
 
     const [error, setError] = useState('')
     const [isPending, setIsPending] = useState(false)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-    const handleSuccess = (res) => {
-        console.log(res)
-    }
+    const history = useHistory()
+    const dispatch = useDispatch()
 
-    const handleFailure = (res) => {
-        console.log(res)
-        // console.log("Unexpected error please try again later")
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setError('')
+        setIsPending(true)
+
+        axios.post(`${process.env.REACT_APP_API}/auth/login`, {email, password}, {withCredentials: true})
+            .then((res) => {
+                if (res.status === 200) {
+                    if (res.data.error) {
+                        setError(res.data.error)
+                        setIsPending(false)
+                    }
+                    else {
+                        dispatch(setUser(res.data))
+                        history.push('/')
+                    }
+                    
+                }
+            })
+            .catch((err) => {
+                setIsPending(false)
+                console.log(err)
+            })
+
     }
-    
 
     return ( 
         <Container>
             <div className='centered w-md-75'>
-                <Card variant="dark" bg="dark" text="light">
+                <Card variant="dark" bg="dark" text="light" className='shadow-lg'>
                     <Card.Body>
                         <div className='p-2 p-md-5'>
                             <div className='text-center'>
@@ -33,19 +56,19 @@ const Login = () => {
                             
                             <Error error={error} />
 
-                            <form>
+                            <form onSubmit={(e) => handleSubmit(e)}>
                                 <div className='form-group mt-3'>
-                                    <label for="email">Email</label>
-                                    <input id="email" className='form-control' type="email" placeholder='Enter Email address' />
+                                    <label htmlFor="email">Email</label>
+                                    <input id="email" className='form-control' type="email" placeholder='Enter Email address' value={email} onChange={(e) => setEmail(e.target.value)} required />
                                 </div>
                                 
                                 <div className='form-group mt-3'>
-                                    <label for="password">Password</label>
-                                    <input id="password" className='form-control' type="password" placeholder='Enter password' />
+                                    <label htmlFor="password">Password</label>
+                                    <input id="password" className='form-control' type="password" placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)} required />
                                 </div>
 
                                 <div className='text-center mt-4'>
-                                    <Button variant='light' className='w-100' disabled={isPending}>
+                                    <Button variant='light' className='w-100' disabled={isPending} type="submit">
                                         {isPending ? <Spinner animation='border' size="sm" />: 'Login'}
                                     </Button>
                                 </div> 

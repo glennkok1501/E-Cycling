@@ -1,5 +1,6 @@
 import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
+import Logout from './Logout';
 
 const NavBar = () => {
     return ( 
@@ -20,7 +21,7 @@ const NavBar = () => {
                     <div className='d-lg-none'>
                         <Link to="/account" className='nav-link'>View Account</Link>
                         <Link to="/history" className='nav-link'>History</Link>
-                        <div className='nav-link text-danger'>Logout</div>
+                        <div className='nav-link text-danger'><Logout /></div>
                     </div>
 
                 </Nav>
@@ -29,7 +30,7 @@ const NavBar = () => {
                         <Link to="/account" className='dropdown-item'>View Account</Link>
                         <Link to="/history" className='dropdown-item'>History</Link>
                         <NavDropdown.Divider />
-                        <div className='dropdown-item text-danger'>Logout</div>
+                        <div className='dropdown-item text-danger'><Logout /></div>
                     </NavDropdown>
                 </Nav>
                 </Navbar.Collapse>
