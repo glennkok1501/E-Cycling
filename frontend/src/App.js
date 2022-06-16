@@ -5,6 +5,7 @@ import Signup from './Pages/Auth/Signup';
 import ProtectedRoute from './Components/Auth/ProtectedRoute';
 import AuthRoute from './Components/Auth/AuthRoute';
 import Account from './Pages/Account/Account';
+import Pickup from './Pages/Pickup/Pickup';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path="/" component={Home}/>
         <ProtectedRoute path="/account/:id" component={Account}/>
+        <ProtectedRoute path="/pickup" component={Pickup}/>
 
         <AuthRoute path="/login" component={Login} />
         <AuthRoute path="/signup" component={Signup} />

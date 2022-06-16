@@ -11,8 +11,9 @@ const Logout = () => {
         axios.get(`${process.env.REACT_APP_API}/auth/logout`, { withCredentials: true})
             .then((res) => {
                 if (res.status === 200) {
-                    dispatch(setUser(null))
                     history.push('/login')
+                    dispatch(setUser(null))
+
                 }
                 else {
                     console.log('error logging out')
