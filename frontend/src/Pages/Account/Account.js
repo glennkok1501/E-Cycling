@@ -40,7 +40,6 @@ const Account = () => {
                     <Posts userId={userId} />
                 </div>
             </Container>
-            
         </div>
      );
 }

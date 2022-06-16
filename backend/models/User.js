@@ -16,7 +16,12 @@ const userSchema = new Schema({
     },
     password: {
         type:String
-    }
+    },
+    addresses: [{
+        "name": {type: String},
+        "address": {type: String},
+        "postalCode": {type: Number}
+    }]
 }, {timestamps: true})
 
 userSchema.pre('save', async function (next) {
