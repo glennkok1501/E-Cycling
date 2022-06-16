@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowPostModal } from "../../../redux/features/postSlice";
+import Loading from "../../Utils/Loading";
 import CommentsList from "../Comment/CommentsList";
 import CreateComment from "../Comment/CreateComment";
 
@@ -42,8 +43,7 @@ const PostModal = () => {
                 </h6>
                 <hr />
                 <div style={{"height": "650px", "overflow": "auto"}}>
-                    <CommentsList comments={comments} />
-
+                    {isPending ? <Loading isPending={isPending} /> : <CommentsList comments={comments} />}
                 </div>
             </Modal.Body>
             <Modal.Footer className="p-0">

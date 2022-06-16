@@ -34,6 +34,20 @@ const getPostsIndex = async (req, res) => {
     }
 }
 
+const userPosts_get = async (req, res) => {
+    const userId = req.params.id
+    try {
+        const posts = await Post.find({UserId: userId}).populate('UserId').populate('comments').sort({createdAt: -1})
+        res.send(posts)
+    }
+
+    catch (err) {
+        console.log(err)
+        res.sendStatus(500)
+    }
+}
+
 module.exports = {
-    posts_get
+    posts_get,
+    userPosts_get
 }

@@ -14,7 +14,6 @@ const PostsList = () => {
     const [offset, setOffSet] = useState(0)
     const increment = 10
 
-    const [showPostModal, setShowPostModal] = useState(false)
     const currentPost = useSelector((state) => state.post.current)
 
     useEffect(() => {
@@ -63,7 +62,7 @@ const PostsList = () => {
                 }
 
             </InfiniteScroll>
-            {currentPost && <PostModal showPostModal={showPostModal} setShowPostModal={setShowPostModal} post={currentPost} />}
+            {currentPost && <PostModal />}
         </div>
     )
 }

@@ -6,12 +6,12 @@ import Logout from './Logout';
 const NavBar = () => {
 
     const user = useSelector((state) => state.user.value)
+
     return ( 
         <Navbar bg="light" expand="lg" fixed="top">
             <Container>
                 <Navbar.Brand>
                     <Link to="/"><img src="/logo256-full.png" alt="logo" width={40} height={40}/></Link>
-                    
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -22,7 +22,7 @@ const NavBar = () => {
                     <a href='/kidsarea' target="_blank" className='nav-link'>Kids Area</a>
 
                     <div className='d-lg-none'>
-                        <Link to="/account" className='nav-link'>View Account</Link>
+                        <Link to={`/account/${user._id}`} className='nav-link'>View Account</Link>
                         <Link to="/history" className='nav-link'>History</Link>
                         <div className='nav-link text-danger'><Logout /></div>
                     </div>
@@ -30,7 +30,7 @@ const NavBar = () => {
                 </Nav>
                 <Nav className='d-none d-lg-block'>
                     <NavDropdown title={user.username} id="basic-nav-dropdown" variant="light" menuVariant='dark'>
-                        <Link to="/account" className='dropdown-item'>View Account</Link>
+                        <Link to={`/account/${user._id}`} className='dropdown-item'>View Account</Link>
                         <Link to="/history" className='dropdown-item'>History</Link>
                         <NavDropdown.Divider />
                         <div className='dropdown-item text-danger'><Logout /></div>

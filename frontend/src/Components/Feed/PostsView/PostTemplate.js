@@ -3,6 +3,7 @@ import Icon from "@mdi/react";
 import { useDispatch } from "react-redux";
 import formatDate from "../../Utils/DateTimeFormat";
 import { setShowPostModal } from "../../../redux/features/postSlice";
+import { Link } from "react-router-dom";
 
 const PostTemplate = ({post}) => {
     const dispatch = useDispatch()
@@ -11,7 +12,9 @@ const PostTemplate = ({post}) => {
         <div className="card mb-4">
             <div className="card-body">
                 <div className="d-flex inline align-items-center">
-                    <strong className="me-auto">{post.UserId.username}</strong>
+                    <Link className="text-decoration-none me-auto text-black" to={`/account/${post.UserId._id}`}>
+                        <strong>{post.UserId.username}</strong>
+                    </Link>
                     <div className="text-muted">{formatDate(post.createdAt)}</div>
                 </div>
 

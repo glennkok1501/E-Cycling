@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import formatDate from '../../Utils/DateTimeFormat'
+import { setShowPostModal } from '../../../redux/features/postSlice'
 
 const CommentTemplate = ({comment}) => {
     const dispatch = useDispatch()
@@ -8,7 +9,10 @@ const CommentTemplate = ({comment}) => {
     return (
         <div className="d-flex mb-4">
             <div className="flex-grow-1 ms-3">
-                <b>{comment.username}</b>
+                <Link className="text-decoration-none me-auto text-black" to={`/account/${comment.UserId}`}
+                onClick={() => dispatch(setShowPostModal({post: null, show: false}))}>
+                    <b>{comment.username}</b>
+                </Link>
                 <i className='ms-2 me-2 text-muted'>&#8226;</i>
                 <small>{formatDate(comment.createdAt)}</small>
                 <br />
