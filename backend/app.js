@@ -20,6 +20,8 @@ app.use(fileUpload());
 const authRoutes = require('./api/routes/authRoutes')
 const postRoutes = require('./api/routes/postRoutes')
 const userRoutes = require('./api/routes/userRoutes')
+const pickupRoutes = require('./api/routes/pickupRoutes')
+
 
 // routes
 app.use('/auth', authRoutes)
@@ -27,6 +29,9 @@ app.use('/auth', authRoutes)
 app.use('/post', postRoutes)
 
 app.use('/user', userRoutes)
+
+app.use('/pickup', pickupRoutes)
+
 
 
 

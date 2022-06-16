@@ -10,11 +10,19 @@ const pickupSchema = new Schema({
     userImage: {
         type: String,
     },
-    message: {
+    userMessage: {
         type: String
     },
+    address: {
+        type: String
+    },
+    UserId: {
+        type: String,
+        ref: "User" 
+    },
     status: {
-        type: Number
+        type: Number,
+        default: 0
     },
     vImage: {
         type: String,
@@ -22,10 +30,14 @@ const pickupSchema = new Schema({
     vMessage: {
         type: String,
     },
+    vUserId: {
+        type: String,
+        ref: "User" 
+    },
     rating: {
         type: Number
     }
 }, {timestamps: true})
 
-const Pickup = mongoose.model("Post", pickupSchema)
+const Pickup = mongoose.model("Pickup", pickupSchema)
 module.exports = Pickup

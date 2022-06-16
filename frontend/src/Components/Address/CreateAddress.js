@@ -60,7 +60,7 @@ const CreateAddress = ({addresses, setAddresses}) => {
                     </div>
                     <div className="form-group mt-3">
                         <label htmlFor="postal">Postal Code</label>
-                        <input id="postal" className="form-control" inputmode="numeric" type="text" pattern="\d*" minLength={6} maxLength={6} placeholder="123456" value={postal} onChange={(e) => setPostal(e.target.value)} required />
+                        <input id="postal" className="form-control" type="text" pattern="\d*" minLength={6} maxLength={6} placeholder="123456" value={postal} onChange={(e) => setPostal(e.target.value)} required />
                     </div>
                     <div className="mt-3 d-flex justify-content-end">
                         <Button size="sm" variant="dark" disabled={isPending} type="submit">
