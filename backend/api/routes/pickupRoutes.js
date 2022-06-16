@@ -6,6 +6,8 @@ const createPickup = require('../controllers/pickup/createPickup')
 
 router.get('/all', requireAuth, pickupController.allPickups_get)
 
+router.get('/history', requireAuth, pickupController.pickupsHistory_get)
+
 router.get('/', requireAuth, pickupController.myPickups_get)
 
 router.post('/', requireAuth, createPickup.createPickup_post)

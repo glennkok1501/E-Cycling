@@ -25,6 +25,18 @@ const myPickups_get = async (req, res) => {
     }
 }
 
+const pickupsHistory_get = async (req, res) => {
+    const decodedToken = req.decodedToken
+    try {
+        const pickups = await Pickup.find({UserId: decodedToken.id}).sort({createdAt: -1})
+        res.send(pickups)
+    }
+    catch (err) {
+        console.log(err)
+        res.sendStatus(500)
+    }
+}
+
 const pickupAccept_put = async (req, res) => {
     const decodedToken = req.decodedToken
     const {pickupId} = req.body
@@ -64,5 +76,6 @@ module.exports = {
     allPickups_get,
     pickupAccept_put,
     myPickups_get,
-    pickupComplete_put
+    pickupComplete_put,
+    pickupsHistory_get
 }

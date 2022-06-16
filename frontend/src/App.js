@@ -6,7 +6,7 @@ import ProtectedRoute from './Components/Auth/ProtectedRoute';
 import AuthRoute from './Components/Auth/AuthRoute';
 import Account from './Pages/Account/Account';
 import Pickup from './Pages/Pickup/Pickup';
-
+import History from './Pages/History/History';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <ProtectedRoute exact path="/" component={Home}/>
         <ProtectedRoute path="/account/:id" component={Account}/>
         <ProtectedRoute path="/pickup" component={Pickup}/>
+        <ProtectedRoute path="/history" component={History}/>
 
         <AuthRoute path="/login" component={Login} />
         <AuthRoute path="/signup" component={Signup} />

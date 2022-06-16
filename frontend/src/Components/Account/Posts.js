@@ -17,7 +17,6 @@ const Posts = ({userId}) => {
                 if (res.status === 200) {
                     setPosts(res.data)
                     setIsPending(false)
-                    console.log(res.data)
                 }
             })
             .catch((err) => {
