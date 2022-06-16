@@ -29,7 +29,7 @@ const ImageSelect = ({image, setImage}) => {
         </div>}
             <label className='form-label w-100 text-center'>
                 <div className="border p-2 rounded">
-                    {image && <img className="img-fluid" src={URL.createObjectURL(image)} alt="preview" />}
+                    {image && <img className="img-fluid" src={URL.createObjectURL(image)} alt="preview" style={{"height":"256px", "width":"256px", "objectFit":"cover"}} />}
                     <div className={`d-flex align-items-center justify-content-center bg-light p-5 ${(image && 'd-none')}`} type="button">
                         <strong>Add Photo</strong>
                         <input style={{display: 'none'}} className='form-control' type="file" accept="image/png, image/jpeg" onChange={(e) => handleRenderImg(e)} />

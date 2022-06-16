@@ -13,6 +13,10 @@ const postSchema = new Schema({
     caption: {
         type: String
     },
+    comments: [{
+        type: String,
+        ref: "Comment" 
+    }],
     UserId: {
         type: String,
         ref: "User" 

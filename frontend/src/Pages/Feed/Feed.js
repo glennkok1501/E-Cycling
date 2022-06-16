@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CreateModal from "../../Components/Feed/Create/CreateModal";
+import PostsList from "../../Components/Feed/PostsView/PostsList";
 import UploadBtn from "../../Components/Utils/UploadBtn";
 
 
@@ -12,6 +13,12 @@ const Feed = () => {
 
     return ( 
         <>
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    <PostsList />
+
+                </div>
+            </div>
             <UploadBtn handleFunc={handleShowCreateModal}  />
             <CreateModal 
                 showCreateModal={showCreateModal} 

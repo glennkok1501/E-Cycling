@@ -7,7 +7,7 @@ const NavBar = () => {
 
     const user = useSelector((state) => state.user.value)
     return ( 
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" fixed="top">
             <Container>
                 <Navbar.Brand>
                     <Link to="/"><img src="/logo256-full.png" alt="logo" width={40} height={40}/></Link>
