@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/features/userSlice";
 import Error from "../Utils/Error";
 
 const CreateAddress = ({addresses, setAddresses}) => {
@@ -10,6 +12,8 @@ const CreateAddress = ({addresses, setAddresses}) => {
     const [postal, setPostal] = useState('')
     const [error, setError] = useState('')
     const [isPending, setIsPending] = useState(false)
+    const dispatch = useDispatch()
+    const user = useSelector((state) => state.user.value)
 
     const clear = () => {
         setName('')
@@ -34,7 +38,9 @@ const CreateAddress = ({addresses, setAddresses}) => {
         axios.post(`${process.env.REACT_APP_API}/user/address`, {name, address, postalCode: postal}, {withCredentials: true})
             .then((res) => {
                 if (res.status === 200) {
-                    setAddresses([res.data, ...addresses])
+                    const data = [res.data, ...addresses]
+                    setAddresses(data)
+                    dispatch(setUser({...user, addresses: data}))
                     setIsPending(false)
                     clear()
                 }

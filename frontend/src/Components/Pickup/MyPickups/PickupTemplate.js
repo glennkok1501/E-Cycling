@@ -2,11 +2,11 @@ import { mdiClockOutline, mdiMapMarker } from "@mdi/js";
 import Icon from "@mdi/react";
 import formatDate from "../../Utils/DateTimeFormat";
 
-const PickupTemplate = ({pickup, setPickup, setShowAllPickupModal}) => {
+const PickupTemplate = ({pickup, setPickup, setShowMyPickupModal}) => {
     const address = JSON.parse(pickup.address)
     const handleSet = () => {
         setPickup(pickup)
-        setShowAllPickupModal(true)
+        setShowMyPickupModal(true)
     }
 
     return ( 
@@ -14,10 +14,13 @@ const PickupTemplate = ({pickup, setPickup, setShowAllPickupModal}) => {
             <div className="card-body">
                 <div onClick={handleSet}>
                     <small className="text-muted d-flex align-items-center">
-                        <div>
+                        <div className="me-auto">
                             <Icon size={1} path={mdiClockOutline} />
                             {formatDate(pickup.createdAt)}
                         </div>
+                        <strong className={pickup.status === 1 ? 'text-danger' : 'text-success'}>
+                            {pickup.status === 1 ? 'In Progress' : 'Completed'}
+                        </strong>
                         
                     </small>
 

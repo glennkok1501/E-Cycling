@@ -1,14 +1,21 @@
 import { mdiClose, mdiMapMarker,  } from "@mdi/js";
 import Icon from "@mdi/react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/features/userSlice";
 
 const AddressTemplate = ({address, addresses, setAddresses}) => {
+
+    const dispatch = useDispatch()
+    const user = useSelector((state) => state.user.value)
 
     const handleDelete = () => {
         axios.delete(`${process.env.REACT_APP_API}/user/address`, {withCredentials: true, data:{name: address.name}})
             .then((res) => {
                 if (res.status === 200) {
-                    setAddresses(addresses.filter((a) => a.name !== address.name))
+                    const data = addresses.filter((a) => a.name !== address.name)
+                    setAddresses(data)
+                    dispatch(setUser({...user, addresses: data}))
                 }
             })
             .catch((err) => {

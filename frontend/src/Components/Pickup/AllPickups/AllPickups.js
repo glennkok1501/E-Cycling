@@ -19,7 +19,6 @@ const AllPickups = () => {
                 if (res.status === 200) {
                     setPickups(res.data)
                     setIsPending(false)
-                    console.log(res.data)
                 }
             })
             .catch((err) => {

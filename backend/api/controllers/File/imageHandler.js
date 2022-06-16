@@ -6,7 +6,7 @@ const saveImage = async (image, path, w, h) => {
     const filename = image.name.replace(/\.[^.]*$/,'.webp')
     const server = `${process.env.HOST}:${process.env.PORT}`
     const filepath = `${path}/${uuid.v4()}-${filename}`
-    console.log(filepath)
+    
     await sharp(Buffer.from(image.data))
         .resize({
             height: h,
