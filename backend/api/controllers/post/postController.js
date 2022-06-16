@@ -12,7 +12,7 @@ const posts_get = (req, res) => {
 const getPosts = async (req, res) => {
     try {
         const array = req.query.id.split(',')
-        const posts = await Post.find({_id: {$in: array}}).populate('UserId')
+        const posts = await Post.find({_id: {$in: array}}).populate('UserId').populate('comments').sort({createdAt: -1})
 
         res.send(posts)
     }

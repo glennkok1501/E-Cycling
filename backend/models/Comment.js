@@ -11,8 +11,14 @@ const commentSchema = new Schema({
     type: String,
     ref: "User"
   },
+  username: {
+    type: String
+  },
   body: {
     type:String
+  },
+  PostId: {
+    type: String
   }
 },{timestamps: true});
 

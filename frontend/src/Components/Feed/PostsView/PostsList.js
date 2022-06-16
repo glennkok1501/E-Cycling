@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../../Utils/Loading';
 import PostTemplate from './PostTemplate';
+import PostModal from './PostModal';
+import { useSelector } from 'react-redux';
 
 const PostsList = () => {
 
@@ -11,6 +13,9 @@ const PostsList = () => {
     const [postIds, setPostIds] = useState([])
     const [offset, setOffSet] = useState(0)
     const increment = 10
+
+    const [showPostModal, setShowPostModal] = useState(false)
+    const currentPost = useSelector((state) => state.post.current)
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API}/post/?limit=200`, {withCredentials:true})
@@ -58,7 +63,7 @@ const PostsList = () => {
                 }
 
             </InfiniteScroll>
-            
+            {currentPost && <PostModal showPostModal={showPostModal} setShowPostModal={setShowPostModal} post={currentPost} />}
         </div>
     )
 }
