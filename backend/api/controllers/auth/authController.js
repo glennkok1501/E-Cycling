@@ -41,7 +41,31 @@ const signup_post = async (req, res) => {
     }
 }
 
+const logout_get = (req, res) => {
+    res.cookie('jwt', '', {maxAge: 1})
+    res.sendStatus(200)
+}
+
+const verify_get = async (req, res) => {
+    const decodedToken = req.decodedToken
+    if (decodedToken) {
+        try {
+            const result = await User.findOne({_id: decodedToken.id})
+            res.send(result)
+        }
+        catch (err) {
+            console.log(err)
+            res.send(null)
+        }
+    }
+    else {
+        res.send(null)
+    }
+}
+
 module.exports = {
     signup_post,
-    login_post
+    login_post,
+    logout_get,
+    verify_get
 }

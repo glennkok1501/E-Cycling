@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Button, Card, Container, Spinner } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import Error from '../../Components/Error/Error';
 import axios from 'axios'
 import './auth.css'
 import {useDispatch} from 'react-redux'
 import { setUser } from '../../redux/features/userSlice';
+import Error from '../../Components/Utils/Error';
 
 const Signup = () => {
 

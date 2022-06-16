@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Card, Container, Spinner } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import Error from '../../Components/Error/Error';
+import Error from '../../Components/Utils/Error';
 import { setUser } from '../../redux/features/userSlice';
 import './auth.css'
 
