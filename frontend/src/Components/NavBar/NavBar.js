@@ -1,8 +1,11 @@
 import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
 
 const NavBar = () => {
+
+    const user = useSelector((state) => state.user.value)
     return ( 
         <Navbar bg="light" expand="lg">
             <Container>
@@ -26,7 +29,7 @@ const NavBar = () => {
 
                 </Nav>
                 <Nav className='d-none d-lg-block'>
-                    <NavDropdown title="Account" id="basic-nav-dropdown" variant="light" menuVariant='dark'>
+                    <NavDropdown title={user.username} id="basic-nav-dropdown" variant="light" menuVariant='dark'>
                         <Link to="/account" className='dropdown-item'>View Account</Link>
                         <Link to="/history" className='dropdown-item'>History</Link>
                         <NavDropdown.Divider />

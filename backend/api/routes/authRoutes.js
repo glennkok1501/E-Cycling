@@ -11,6 +11,4 @@ router.get('/logout', authController.logout_get)
 
 router.get('/verify', requireAuth, authController.verify_get)
 
-
-
 module.exports = router

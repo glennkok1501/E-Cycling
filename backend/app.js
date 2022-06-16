@@ -18,9 +18,13 @@ app.use(fileUpload());
 
 // imported routes
 const authRoutes = require('./api/routes/authRoutes')
+const postRoutes = require('./api/routes/postRoutes')
 
 // routes
 app.use('/auth', authRoutes)
+
+app.use('/post', postRoutes)
+
 
 // unknown requests
 app.use((req, res) => res.send(null))

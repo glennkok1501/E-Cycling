@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
 import NavBar from "../../Components/NavBar/NavBar";
+import Feed from "../Feed/Feed";
 
 const Home = () => {
     return ( 
@@ -7,7 +8,7 @@ const Home = () => {
             <NavBar />
             <Container>
                 <div className="contents">
-                    Home
+                    <Feed />
                 </div>
             </Container>
             
