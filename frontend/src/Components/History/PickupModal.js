@@ -1,64 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
+import Username from "../Pickup/Username";
 import Error from "../Utils/Error";
-import ImageSelect from "../Utils/ImageSelect";
+import Rate from "./Rate";
+import ShowRating from "./ShowRating";
 
 const PickupModal = ({pickup, pickups, setPickups, showPickupModal, setShowPickupModal}) => {
 
-    const MAX_LENGTH = 256
-
     const [error, setError] = useState('')
-    const [isPending, setIsPending] = useState(false)
-
-    const [image, setImage] = useState(null)
-    const [message, setMessage] = useState('')
 
     const handleClose = () => {
         setError('')
         setShowPickupModal(false)
-        setIsPending(false)
-        setImage(null)
-        setMessage('')
     }    
-
-    const handleComplete = () => {
-        setError('')
-
-        if (image === null) {
-            setError('Please select an image')
-            return
-        }
-
-        const formData = new FormData()
-        formData.append("image", image)
-        formData.append("pickupId", pickup._id)
-        formData.append("message", message)
-
-        setIsPending(true)
-        axios.put(`${process.env.REACT_APP_API}/pickup/complete`, formData, {
-            withCredentials: true,
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }})
-            .then((res) => {
-                if (res.status === 200) {
-                    if (res.data.error) {
-                        setError(res.data.error)
-                        setIsPending(false)
-                    }
-                    else {
-                        setPickups(pickups.map((p) => p._id === pickup._id ? {...p, status: 2} : p))
-                        handleClose()
-                    }
-                    
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-                handleClose()
-            })
-    }
 
     return ( 
         <Modal scrollable={true} show={showPickupModal} onHide={handleClose} centered fullscreen={'md-down'}>
@@ -72,28 +27,29 @@ const PickupModal = ({pickup, pickups, setPickups, showPickupModal, setShowPicku
                     <h6>{pickup.userMessage ? pickup.userMessage : 'No message'}</h6>
                 </div>
 
-                <hr />
 
-                <h5>Completion</h5>
-                {pickup.status === 1 ? <ImageSelect image={image} setImage={setImage} /> :
-                <img src={pickup.vImage} className="img-fluid rounded w-100" alt="user"/>}
+                {pickup.status > 0 && 
+                <>
+                    <hr />
+                    <h5>Volunteer: <Username user={pickup.vUserId} /></h5>
+                </>}
+                {pickup.status === 2 && 
+                <>
+                    <img src={pickup.vImage} className="img-fluid rounded w-100" alt="user"/>
+                    <h6>{pickup.vMessage ? pickup.vMessage : 'No message'}</h6>
+                </>
+                }
                 
-                <div className="mt-3">
-                    {pickup.status === 1 ? 
-                    <>
-                        <textarea type='text' rows={5} maxLength={MAX_LENGTH} className="h-50 form-control" value={message} placeholder="Write a message..." onChange={(e) => setMessage(e.target.value)}/>
-                        <div className="text-end text-muted">{`${message.length}/${MAX_LENGTH}`}</div>
-                    </> :
-                    <h6>{pickup.vMessage ? pickup.vMessage : 'No message'}</h6>}
-                </div>
+                {pickup.status === 2 && 
+                <>
+                    {pickup.rating > 0 ? <div><ShowRating rating={pickup.rating} /></div> : <Rate handleClose={handleClose} pickup={pickup} pickups={pickups} setPickups={setPickups} />}
+                </>}
 
-                {pickup.rating > 0 && <div>{pickup.rating}</div>}
-
-                {pickup.status === 1 && <div className="text-center">
+                {/* {pickup.status === 1 && <div className="text-center">
                     <div className="btn btn-dark w-75" onClick={handleComplete}>
                         {isPending ? <Spinner animation='border' size="sm" />: 'Complete'}
                     </div>
-                </div>}
+                </div>} */}
                 
             </Modal.Body>
         </Modal>

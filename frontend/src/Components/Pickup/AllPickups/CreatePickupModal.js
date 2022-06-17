@@ -96,7 +96,7 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
                 </div>
 
                 <div className="text-center">
-                    <div className="btn btn-dark w-75" onClick={handleSubmit}>
+                    <div className={`btn btn-dark w-75 ${isPending && 'disabled'}`} onClick={handleSubmit}>
                     {isPending ? <Spinner animation='border' size="sm" />: 'Create'}
                     </div>
                 </div>

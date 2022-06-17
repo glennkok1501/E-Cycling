@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Error from "../../Utils/Error";
+import Username from "../Username";
 
 const AllPickupModal = ({pickup, pickups, setPickups, showAllPickupModal, setShowAllPickupModal}) => {
 
@@ -41,6 +43,7 @@ const AllPickupModal = ({pickup, pickups, setPickups, showAllPickupModal, setSho
         <Modal scrollable={true} show={showAllPickupModal} onHide={handleClose} centered fullscreen={'md-down'}>
             <Modal.Body>
                 <Error error={error} />
+                <Username user={pickup.UserId} />
                 <img src={pickup.userImage} className="img-fluid rounded w-100" alt="user"/>
                 <div className="mt-3">
                     <h6>{pickup.userMessage ? pickup.userMessage : 'No message'}</h6>

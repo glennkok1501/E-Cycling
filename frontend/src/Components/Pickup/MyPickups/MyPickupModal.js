@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
+import ShowRating from "../../History/ShowRating";
 import Error from "../../Utils/Error";
 import ImageSelect from "../../Utils/ImageSelect";
-import {Link} from 'react-router-dom'
+import Username from "../Username";
 
 const MyPickupModal = ({pickup, pickups, setPickups, showMyPickupModal, setShowMyPickupModal}) => {
 
@@ -49,7 +50,7 @@ const MyPickupModal = ({pickup, pickups, setPickups, showMyPickupModal, setShowM
                         setIsPending(false)
                     }
                     else {
-                        setPickups(pickups.map((p) => p._id === pickup._id ? {...p, status: 2} : p))
+                        setPickups(pickups.map((p) => p._id === pickup._id ? res.data : p))
                         handleClose()
                     }
                     
@@ -68,7 +69,7 @@ const MyPickupModal = ({pickup, pickups, setPickups, showMyPickupModal, setShowM
             </Modal.Header>
             <Modal.Body>
                 <Error error={error} />
-                <Link to={`/account/${pickup.UserId._id}`}><strong>{pickup.UserId.username}</strong></Link> 
+                <Username user={pickup.UserId} />
                 <img src={pickup.userImage} className="img-fluid rounded w-100" alt="user"/>
                 <div className="mt-3">
                     <h6>{pickup.userMessage ? pickup.userMessage : 'No message'}</h6>
@@ -89,7 +90,7 @@ const MyPickupModal = ({pickup, pickups, setPickups, showMyPickupModal, setShowM
                     <h6>{pickup.vMessage ? pickup.vMessage : 'No message'}</h6>}
                 </div>
 
-                {pickup.rating > 0 && <div>{pickup.rating}</div>}
+                {pickup.rating > 0 && <ShowRating rating={pickup.rating} />}
 
                 {pickup.status === 1 && <div className="text-center">
                     <div className="btn btn-dark w-75" onClick={handleComplete}>

@@ -16,6 +16,6 @@ router.put('/accept', requireAuth, pickupController.pickupAccept_put)
 
 router.put('/complete', requireAuth, pickupController.pickupComplete_put)
 
-
+router.put('/rate', requireAuth, pickupController.rate_put)
 
 module.exports = router
