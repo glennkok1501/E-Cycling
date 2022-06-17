@@ -9,7 +9,7 @@ services:
     build: ./backend
     container_name: backend
     ports:
-      - '8000:3001'
+      - '8000:8000'
     links:
       - database
     restart: always
