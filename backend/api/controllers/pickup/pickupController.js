@@ -4,7 +4,7 @@ const { saveImage } = require("../File/imageHandler")
 const allPickups_get = async (req, res) => {
     const decodedToken = req.decodedToken
     try {
-        const pickups = await Pickup.find({status: 0, UserId: {$ne: decodedToken.id}}).sort({createdAt: -1})
+        const pickups = await Pickup.find({status: 0, UserId: {$ne: decodedToken.id}}).populate('UserId', 'vUserId').sort({createdAt: -1})
         res.send(pickups)
     }
     catch (err) {
@@ -16,7 +16,7 @@ const allPickups_get = async (req, res) => {
 const myPickups_get = async (req, res) => {
     const decodedToken = req.decodedToken
     try {
-        const pickups = await Pickup.find({vUserId: decodedToken.id}).sort({createdAt: -1})
+        const pickups = await Pickup.find({vUserId: decodedToken.id}).populate('UserId').sort({createdAt: -1})
         res.send(pickups)
     }
     catch (err) {
@@ -28,7 +28,7 @@ const myPickups_get = async (req, res) => {
 const pickupsHistory_get = async (req, res) => {
     const decodedToken = req.decodedToken
     try {
-        const pickups = await Pickup.find({UserId: decodedToken.id}).sort({createdAt: -1})
+        const pickups = await Pickup.find({UserId: decodedToken.id}).populate('UserId').sort({createdAt: -1})
         res.send(pickups)
     }
     catch (err) {

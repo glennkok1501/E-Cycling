@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
 import Error from "../../Utils/Error";
 import ImageSelect from "../../Utils/ImageSelect";
+import {Link} from 'react-router-dom'
 
 const MyPickupModal = ({pickup, pickups, setPickups, showMyPickupModal, setShowMyPickupModal}) => {
 
@@ -67,6 +68,7 @@ const MyPickupModal = ({pickup, pickups, setPickups, showMyPickupModal, setShowM
             </Modal.Header>
             <Modal.Body>
                 <Error error={error} />
+                <Link to={`/account/${pickup.UserId._id}`}><strong>{pickup.UserId.username}</strong></Link> 
                 <img src={pickup.userImage} className="img-fluid rounded w-100" alt="user"/>
                 <div className="mt-3">
                     <h6>{pickup.userMessage ? pickup.userMessage : 'No message'}</h6>

@@ -9,6 +9,12 @@ const PickupTemplate = ({pickup, setPickup, setShowPickupModal}) => {
         setShowPickupModal(true)
     }
 
+    const STATUS = {
+        0: {"text": "text-muted", "status": "Waiting"},
+        1: {"text": "text-danger", "status": "In Progress"},
+        2: {"text": "text-success", "status": "Completed"}
+    }
+
     return ( 
         <div className="card mb-4">
             <div className="card-body">
@@ -18,8 +24,8 @@ const PickupTemplate = ({pickup, setPickup, setShowPickupModal}) => {
                             <Icon size={1} path={mdiClockOutline} />
                             {formatDate(pickup.createdAt)}
                         </div>
-                        <strong className={pickup.status === 1 ? 'text-danger' : 'text-success'}>
-                            {pickup.status === 1 ? 'In Progress' : 'Completed'}
+                        <strong className={STATUS[pickup.status]["text"]}>
+                            {STATUS[pickup.status]["status"]}
                         </strong>
                         
                     </small>
