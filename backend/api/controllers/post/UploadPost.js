@@ -7,7 +7,7 @@ const upload_post = async (req, res) => {
     const {caption} = req.body
 
     try {
-        const image = await saveImage(fileData.image, 'post', 256, 256)
+        const image = await saveImage(fileData.image, 'post', 512, 512)
         const post = await Post.create({image, caption, UserId: decodedToken.id})
         res.send(post)
     }

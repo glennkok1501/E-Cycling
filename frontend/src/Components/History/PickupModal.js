@@ -1,6 +1,5 @@
-import axios from "axios";
 import { useState } from "react";
-import { Modal, Spinner } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import Username from "../Pickup/Username";
 import Error from "../Utils/Error";
 import Rate from "./Rate";

@@ -16,7 +16,6 @@ const PickupHistory = () => {
                 if (res.status === 200) {
                     setPickups(res.data)
                     setIsPending(false)
-                    console.log(res.data)
                 }
             })
             .catch((err) => {
@@ -33,7 +32,8 @@ const PickupHistory = () => {
                     <PickupList pickups={pickups} setPickup={setPickup} setShowPickupModal={setShowPickupModal} />
                 </div>
 
-            {pickup && <PickupModal pickup={pickup} pickups={pickups} setPickups={setPickups} showPickupModal={showPickupModal} setShowPickupModal={setShowPickupModal} />}
+                {pickup && <PickupModal pickup={pickup} pickups={pickups} setPickups={setPickups} showPickupModal={showPickupModal} setShowPickupModal={setShowPickupModal} />}
+                {pickups.length === 0 && <h6 className='text-center m-5'>History is empty</h6>}
             </>
             }
             

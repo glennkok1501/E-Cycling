@@ -1,7 +1,8 @@
+import { mdiCheck, mdiClose } from "@mdi/js";
+import Icon from "@mdi/react";
 import axios from "axios";
 import { useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Error from "../../Utils/Error";
 import Username from "../Username";
 
@@ -51,10 +52,10 @@ const AllPickupModal = ({pickup, pickups, setPickups, showAllPickupModal, setSho
             </Modal.Body>
             <Modal.Footer>
                 <div className="btn btn-danger btn-sm" onClick={handleClose}>
-                    Close
+                    <Icon size={0.8} path={mdiClose} />Close
                 </div>
                 <div className="btn btn-success btn-sm" onClick={handleAccept}>
-                {isPending ? <Spinner animation='border' size="sm" />: 'Accept'}
+                {isPending ? <Spinner animation='border' size="sm" />: <div><Icon size={0.8} path={mdiCheck} />Accept</div>}
                 </div>
             </Modal.Footer>
         </Modal>
