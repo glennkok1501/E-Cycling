@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './Pages/Home/Home';
 import Login from './Pages/Auth/Login';
 import Signup from './Pages/Auth/Signup';
@@ -7,6 +7,7 @@ import AuthRoute from './Components/Auth/AuthRoute';
 import Account from './Pages/Account/Account';
 import Pickup from './Pages/Pickup/Pickup';
 import History from './Pages/History/History';
+import NoticeBoard from './Pages/NoticeBoard/NoticeBoard';
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         <ProtectedRoute path="/account/:id" component={Account}/>
         <ProtectedRoute path="/pickup" component={Pickup}/>
         <ProtectedRoute path="/history" component={History}/>
+
+        <Route path="/noticeboard">
+          <NoticeBoard />
+        </Route>
 
         <AuthRoute path="/login" component={Login} />
         <AuthRoute path="/signup" component={Signup} />

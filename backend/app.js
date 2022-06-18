@@ -21,6 +21,7 @@ const authRoutes = require('./api/routes/authRoutes')
 const postRoutes = require('./api/routes/postRoutes')
 const userRoutes = require('./api/routes/userRoutes')
 const pickupRoutes = require('./api/routes/pickupRoutes')
+const noticeRoutes = require('./api/routes/noticeRoutes')
 
 
 // routes
@@ -32,7 +33,7 @@ app.use('/user', userRoutes)
 
 app.use('/pickup', pickupRoutes)
 
-
+app.use('/notice', noticeRoutes)
 
 
 // unknown requests
