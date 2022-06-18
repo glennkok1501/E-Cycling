@@ -8,6 +8,7 @@ import Account from './Pages/Account/Account';
 import Pickup from './Pages/Pickup/Pickup';
 import History from './Pages/History/History';
 import NoticeBoard from './Pages/NoticeBoard/NoticeBoard';
+import Guidelines from './Pages/Guidelines/Guidelines';
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
 
         <Route path="/noticeboard">
           <NoticeBoard />
+        </Route>
+
+        <Route path="/guidelines">
+          <Guidelines />
         </Route>
 
         <AuthRoute path="/login" component={Login} />

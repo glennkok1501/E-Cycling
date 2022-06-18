@@ -82,7 +82,7 @@ const Login = () => {
                     </Card.Body>
                 </Card>
                 <div className='mt-3 text-center'>
-                    <h6>Find out more information and the lastest events?</h6>
+                    <h6>Find out more information and the latest events?</h6>
                     <Link to="/noticeboard" className='text-black'>Visit out Notice board here</Link>
                 </div>
             </div>

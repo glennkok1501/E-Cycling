@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Error from "../../Utils/Error";
 import ImageSelect from "../../Utils/ImageSelect";
 
@@ -14,6 +15,7 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
     const [message, setMessage] = useState('')
     const [address, setAddress] = useState('')
 
+    const [isChecked, setIsChecked] = useState(false)
     const [error, setError] = useState('')
     const [isPending, setIsPending] = useState(false)
 
@@ -95,8 +97,15 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
                     <div className="text-end text-muted">{`${message.length}/${MAX_LENGTH}`}</div>
                 </div>
 
-                <div className="text-center">
-                    <div className={`btn btn-dark w-75 ${isPending && 'disabled'}`} onClick={handleSubmit}>
+                <div className="form-check">
+                    <input className="form-check-input" type="checkbox" checked={isChecked} onChange={(e) => setIsChecked(!isChecked)}  />
+                    <label className="form-check-label">
+                        I have acknowledged and adhered to following <Link to="/guidelines">guidelines</Link> provided
+                    </label>
+                </div>
+
+                <div className="text-center mt-3">
+                    <div className={`btn btn-dark w-75 ${isPending | !isChecked && 'disabled'}`} onClick={handleSubmit}>
                     {isPending ? <Spinner animation='border' size="sm" />: 'Create'}
                     </div>
                 </div>
