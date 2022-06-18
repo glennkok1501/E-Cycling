@@ -9,15 +9,21 @@ const Details = ({account}) => {
     const user = useSelector((state) => state.user.value)
     return ( 
         <>
-            <div className="d-flex align-items-center">
-                <div className="me-auto">
+            <div className="row">
+                <div className="col-8">
                     <h3>{account.username}</h3>
                     <h4>{account.email}</h4>
                     <small className="text-muted">{`Joined since ${formatDate(account.createdAt)}`}</small>
                 </div>
-                {user._id === account._id && <div className="btn btn-dark" onClick={() => setShowAddressModal(true)}>
-                    Manage Addresses
-                </div>}
+
+                <div className="col-4">
+                    {user._id === account._id && 
+                    <div className="btn btn-dark" onClick={() => setShowAddressModal(true)}>
+                        Manage Addresses
+                    </div>}
+                    
+                </div>
+                
             </div>
             {user._id === account._id && <AddressModal showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} account={account} />}
         </>

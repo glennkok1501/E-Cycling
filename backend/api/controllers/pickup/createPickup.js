@@ -13,7 +13,7 @@ const createPickup_post = async (req, res) => {
             return
         }
 
-        const image = await saveImage(fileData.image, 'pickup', null, 256)
+        const image = await saveImage(fileData.image, 'pickup', null, 512)
         const pickup = await Pickup.create({userMessage: message, userImage: image, UserId: decodedToken.id, address})
         res.send(pickup)
     }
