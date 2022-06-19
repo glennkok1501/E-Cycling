@@ -1,13 +1,13 @@
 import { Redirect, Route } from 'react-router'
-import Loading from '../Utils/Loading'
 import RequireAuth from './RequireAuth'
+import Verify from './Verify'
 
 const ProtectedRoute = ({component: Component, ...options}) => {
 
     const {auth, isTokenValid} = RequireAuth()
 
     if (!isTokenValid) return (
-        <Loading isPending={true} />
+        <Verify />
     )
 
    return (<Route {...options}
