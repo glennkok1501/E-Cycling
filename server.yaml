@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  database:
+    image: mongo
+    container_name: database
+    ports:
+      - '27017:27017'
+  backend:
+    image: glennkok15/ecycling-backend
+    container_name: backend
+    ports:
+      - '8000:8000'
+    links:
+      - database
+    restart: always
+  frontend:
+    image: glennkok15/ecycling-frontend
+    container_name: frontend
+    ports:
+      - '80:3000'
+    links:
+      - backend
+    stdin_open: true
+    tty: true
