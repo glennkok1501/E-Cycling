@@ -1,4 +1,4 @@
-import { mdiClockOutline, mdiClose, mdiImage } from "@mdi/js";
+import { mdiClockOutline, mdiClose, mdiImage, mdiShare } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
@@ -7,13 +7,17 @@ import formatDate from "../Utils/DateTimeFormat";
 const NoticeTemplate = ({notice}) => {
     const [showImage, setShowImage] = useState(false)
 
+    const copyLink = () => {
+        const link = `${window.location.host}/noticeboard/${notice._id}`
+        navigator.clipboard.writeText(link)
+    }
+
     return ( 
         <>
             <div className="card mt-4">
                 <div className="card-body">
                     <div className="d-flex">
                         <h5 className="card-title me-auto">{notice.title}</h5>
-                        {notice.image && <div type="button" onClick={() => setShowImage(true)}><Icon size={1} path={mdiImage} /></div>}
                         <small className="text-muted">{formatDate(notice.createdAt)}</small>
 
                     </div>
@@ -23,6 +27,14 @@ const NoticeTemplate = ({notice}) => {
                         <Icon size={1} path={mdiClockOutline} />
                         {formatDate(notice.date)}
                     </div>}
+
+                    <div className="d-flex justify-content-end">
+                        {notice.image && <div type="button" onClick={() => setShowImage(true)}><Icon size={1} path={mdiImage} /></div>}
+                        <div className="ms-3" type="button" onClick={copyLink}>
+                            <Icon size={1} path={mdiShare} />
+                        </div>
+                    </div>
+
                     <hr />
                     <div>
                         <h6>Contact Information</h6>
@@ -45,7 +57,6 @@ const NoticeTemplate = ({notice}) => {
                             <div className="position-absolute top-0 end-0">
                                 <div className="rounded-circle bg-white m-2 shadow p-1" type="button" onClick={() => setShowImage(false)}>
                                     <Icon size={1} path={mdiClose} />
-
                                 </div>
                             </div>
                         </div>
