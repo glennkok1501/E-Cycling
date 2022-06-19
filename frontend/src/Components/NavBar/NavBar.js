@@ -19,7 +19,8 @@ const NavBar = () => {
                 <Nav className="me-auto">
                     <Link to="/noticeboard" className='nav-link'>Notice Board</Link>
                     <Link to="/pickup" className='nav-link'>Pick Up</Link>
-                    <a href='/kidsarea' target="_blank" className='nav-link'>Kids Area</a>
+                    <Link to="/Guidelines" className='nav-link'>Guidelines</Link>
+                    <a href='/kidsarea' target="_blank" className='nav-link text-info'><strong>Kids Area</strong></a>
 
                     <div className='d-lg-none'>
                         <Link to={`/account/${user._id}`} className='nav-link'>View Account</Link>

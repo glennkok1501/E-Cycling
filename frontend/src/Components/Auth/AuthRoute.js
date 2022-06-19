@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Redirect, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react';
-import Loading from '../Utils/Loading';
+import Verify from './Verify';
 
 const AuthRoute = ({component: Component, ...options}) => {
 
@@ -26,7 +26,7 @@ const AuthRoute = ({component: Component, ...options}) => {
     },[])
 
     if (!isTokenValid) return (
-        <Loading isPending={true} />
+        <Verify />
     )
 
    return (<Route {...options}

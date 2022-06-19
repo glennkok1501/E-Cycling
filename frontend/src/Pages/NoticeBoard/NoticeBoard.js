@@ -16,7 +16,6 @@ const NoticeBoard = () => {
                     </div>
                 </div>
             </Container>
-            
         </div>
      );
 }

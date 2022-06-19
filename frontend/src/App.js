@@ -8,6 +8,8 @@ import Account from './Pages/Account/Account';
 import Pickup from './Pages/Pickup/Pickup';
 import History from './Pages/History/History';
 import NoticeBoard from './Pages/NoticeBoard/NoticeBoard';
+import Guidelines from './Pages/Guidelines/Guidelines';
+import Announcement from './Pages/Announcement/Announcement';
 
 function App() {
   return (
@@ -18,8 +20,16 @@ function App() {
         <ProtectedRoute path="/pickup" component={Pickup}/>
         <ProtectedRoute path="/history" component={History}/>
 
+        <Route path="/noticeboard/:id">
+          <Announcement />
+        </Route>
+
         <Route path="/noticeboard">
           <NoticeBoard />
+        </Route>
+
+        <Route path="/guidelines">
+          <Guidelines />
         </Route>
 
         <AuthRoute path="/login" component={Login} />
