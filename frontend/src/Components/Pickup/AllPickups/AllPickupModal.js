@@ -10,17 +10,19 @@ const AllPickupModal = ({pickup, pickups, setPickups, showAllPickupModal, setSho
 
     const [error, setError] = useState('')
     const [isPending, setIsPending] = useState(false)
+    const [datetime, setDatetime] = useState('')
 
     const handleClose = () => {
         setError('')
         setShowAllPickupModal(false)
         setIsPending(false)
+        setDatetime('')
     }    
 
     const handleAccept = () => {
         setError('')
         setIsPending(true)
-        axios.put(`${process.env.REACT_APP_API}/pickup/accept`, {pickupId: pickup._id}, {withCredentials: true})
+        axios.put(`${process.env.REACT_APP_API}/pickup/accept`, {pickupId: pickup._id, datetime: datetime}, {withCredentials: true})
             .then((res) => {
                 if (res.status === 200) {
                     if (res.data.error) {
@@ -49,13 +51,14 @@ const AllPickupModal = ({pickup, pickups, setPickups, showAllPickupModal, setSho
                 <div className="mt-3">
                     <h6>{pickup.userMessage ? pickup.userMessage : 'No message'}</h6>
                 </div>
+                <input type='datetime-local' className="form-control" value={datetime} onChange={(e) => setDatetime(e.target.value)}/>
             </Modal.Body>
             <Modal.Footer>
                 <div className="btn btn-danger btn-sm" onClick={handleClose}>
                     <Icon size={0.8} path={mdiClose} />Close
                 </div>
-                <div className="btn btn-success btn-sm" onClick={handleAccept}>
-                {isPending ? <Spinner animation='border' size="sm" />: <div><Icon size={0.8} path={mdiCheck} />Accept</div>}
+                <div className={`btn btn-success btn-sm ${datetime === '' && 'disabled'}`} onClick={handleAccept}>
+                    {isPending ? <Spinner animation='border' size="sm" />: <div><Icon size={0.8} path={mdiCheck} />Accept</div>}
                 </div>
             </Modal.Footer>
         </Modal>

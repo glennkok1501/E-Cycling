@@ -24,6 +24,9 @@ const pickupSchema = new Schema({
         type: Number,
         default: 0
     },
+    datetime: {
+        type: Date
+    },
     vImage: {
         type: String,
     },
