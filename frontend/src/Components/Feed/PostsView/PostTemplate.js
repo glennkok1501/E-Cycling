@@ -30,7 +30,7 @@ const PostTemplate = ({post}) => {
                     <Icon size={0.8} path={mdiCommentOutline} />
                     <span className="ms-1">
                         {post.comments.length}
-                        {` Commments`}
+                        {` Comments`}
                     </span>
                 </small>
                 
