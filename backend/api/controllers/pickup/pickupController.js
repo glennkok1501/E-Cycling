@@ -39,7 +39,7 @@ const pickupsHistory_get = async (req, res) => {
 
 const pickupAccept_put = async (req, res) => {
     const decodedToken = req.decodedToken
-    const {pickupId} = req.body
+    const {pickupId, datetime} = req.body
     try {
 
         // check if already in progress with a pickup
@@ -49,7 +49,7 @@ const pickupAccept_put = async (req, res) => {
             return
         }
 
-        await Pickup.updateOne({_id: pickupId}, {status: 1, vUserId: decodedToken.id})
+        await Pickup.updateOne({_id: pickupId}, {status: 1, vUserId: decodedToken.id, datetime})
         res.sendStatus(200)
     }
     catch (err) {

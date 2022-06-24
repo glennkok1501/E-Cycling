@@ -1,4 +1,4 @@
-import { mdiClockOutline, mdiMapMarker } from "@mdi/js";
+import { mdiCalendar, mdiClockOutline, mdiMapMarker } from "@mdi/js";
 import Icon from "@mdi/react";
 import formatDate from "../Utils/DateTimeFormat";
 
@@ -29,6 +29,11 @@ const PickupTemplate = ({pickup, setPickup, setShowPickupModal}) => {
                         </strong>
                         
                     </small>
+
+                    {pickup.datetime && <div className="mt-3">
+                        <Icon size={1} path={mdiCalendar} />
+                        {new Date(pickup.datetime).toISOString().replace(/T/, ' ').replace(/\..+/, '')}
+                    </div>}
 
                     <div className="d-flex align-items-center mt-3">
                         <div>
