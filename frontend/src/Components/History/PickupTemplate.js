@@ -47,7 +47,7 @@ const PickupTemplate = ({pickup, setPickup, setShowPickupModal}) => {
                 
 
                 <div className="d-flex justify-content-end">
-                    <a href={`https://google.com/maps/place/Singapore+${address.postalCode}`} target="_blank" rel="noreferrer">
+                    <a className="text-secondary" href={`https://google.com/maps/place/Singapore+${address.postalCode}`} target="_blank" rel="noreferrer">
                         Open in Google Maps
                     </a>
                 </div>
