@@ -119,5 +119,6 @@ module.exports = {
     myPickups_get,
     pickupComplete_put,
     pickupsHistory_get,
-    rate_put
+    rate_put,
+    updateUserPoints
 }

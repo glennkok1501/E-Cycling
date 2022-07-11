@@ -39,6 +39,10 @@ const pickupSchema = new Schema({
     },
     rating: {
         type: Number
+    },
+    self: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true})
 

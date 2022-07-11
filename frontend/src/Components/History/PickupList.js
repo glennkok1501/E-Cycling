@@ -1,4 +1,5 @@
 import PickupTemplate from "./PickupTemplate";
+import SelfPickupTemplate from "./SelfPickupTemplate";
 
 const PickupList = ({pickups, setPickup, setShowPickupModal}) => {
 
@@ -6,7 +7,10 @@ const PickupList = ({pickups, setPickup, setShowPickupModal}) => {
         <div>
             {pickups.map((pickup) => (
                 <div key={pickup._id}>
-                    <PickupTemplate pickup={pickup} setPickup={setPickup} setShowPickupModal={setShowPickupModal} />
+                    {pickup.self ?
+                        <SelfPickupTemplate pickup={pickup} />
+                     :
+                        <PickupTemplate pickup={pickup} setPickup={setPickup} setShowPickupModal={setShowPickupModal} />}
                 </div>
             ))}
         </div>
