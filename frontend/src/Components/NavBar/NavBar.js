@@ -1,4 +1,4 @@
-import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap'
+import {Navbar, Container, Nav, NavDropdown, DropdownButton} from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
@@ -30,12 +30,12 @@ const NavBar = () => {
 
                 </Nav>
                 <Nav className='d-none d-lg-block'>
-                    <NavDropdown title={user.username} id="basic-nav-dropdown" variant="dark" menuVariant='dark'>
+                    <DropdownButton title={user.username} id="dropdown-basic-button" variant="dark" menuVariant='dark'>
                         <Link to={`/account/${user._id}`} className='dropdown-item text-white'>View Account</Link>
                         <Link to="/history" className='dropdown-item text-white'>History</Link>
                         <NavDropdown.Divider />
                         <div className='dropdown-item text-danger'><Logout /></div>
-                    </NavDropdown>
+                    </DropdownButton>
                 </Nav>
                 </Navbar.Collapse>
             </Container>

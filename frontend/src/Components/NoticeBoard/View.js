@@ -17,7 +17,7 @@ const View = () => {
                 !isPending && 
                 <>
                     <div className="d-flex justify-content-end" >
-                        <Button onClick={() => setShowCreateModal(true)} className="rounded-pill ps-4 pe-4" variant="dark">Make an announcement</Button>
+                        <Button onClick={() => setShowCreateModal(true)} className="rounded-pill ps-4 pe-4" variant="secondary">Make an announcement</Button>
                     </div>
 
                     <CreateNoticeModal showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} />

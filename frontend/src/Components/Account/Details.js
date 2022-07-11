@@ -18,9 +18,12 @@ const Details = ({account}) => {
 
                 <div className="col-4">
                     {user._id === account._id && 
-                    <div className="btn btn-dark" onClick={() => setShowAddressModal(true)}>
+                    <div className="text-end">
+                    <div className="btn btn-secondary" onClick={() => setShowAddressModal(true)}>
                         Manage Addresses
+                    </div>
                     </div>}
+                    
                     
                 </div>
                 

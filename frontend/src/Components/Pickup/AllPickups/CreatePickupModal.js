@@ -100,12 +100,12 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
                 <div className="form-check">
                     <input className="form-check-input" type="checkbox" checked={isChecked} onChange={(e) => setIsChecked(!isChecked)}  />
                     <label className="form-check-label">
-                        I have acknowledged and adhered to following <Link to="/guidelines">guidelines</Link> provided
+                        I have acknowledged and adhered to following <Link className="text-info" to="/guidelines">guidelines</Link> provided
                     </label>
                 </div>
 
                 <div className="text-center mt-3">
-                    <div className={`btn btn-dark w-75 ${isPending | !isChecked && 'disabled'}`} onClick={handleSubmit}>
+                    <div className={`btn btn-secondary w-75 ${isPending | !isChecked && 'disabled'}`} onClick={handleSubmit}>
                     {isPending ? <Spinner animation='border' size="sm" />: 'Create'}
                     </div>
                 </div>

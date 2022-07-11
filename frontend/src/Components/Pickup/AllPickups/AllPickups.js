@@ -33,7 +33,7 @@ const AllPickups = () => {
             <>
                 <div>
                     <div className="d-flex justify-content-end" onClick={() => setShowModal(true)}>
-                        <div className="btn btn-dark">
+                        <div className="btn btn-secondary">
                             Start a pickup
                         </div>
                     </div>

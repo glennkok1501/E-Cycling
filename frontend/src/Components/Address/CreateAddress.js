@@ -69,7 +69,7 @@ const CreateAddress = ({addresses, setAddresses}) => {
                         <input id="postal" className="form-control" type="text" pattern="\d*" minLength={6} maxLength={6} placeholder="123456" value={postal} onChange={(e) => setPostal(e.target.value)} required />
                     </div>
                     <div className="mt-3 d-flex justify-content-end">
-                        <Button size="sm" variant="dark" disabled={isPending} type="submit">
+                        <Button size="sm" variant="secondary ps-3 pe-3" disabled={isPending} type="submit">
                             {isPending ? <Spinner animation='border' size="sm" /> : 'Save'}
                         </Button>
                     </div>
