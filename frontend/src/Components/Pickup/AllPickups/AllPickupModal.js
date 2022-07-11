@@ -42,6 +42,32 @@ const AllPickupModal = ({pickup, pickups, setPickups, showAllPickupModal, setSho
             })
     }
 
+    const handleLoadTime = (time) => {
+        const date = new Date(new Date().getTime() + time * 60000)
+
+        const currentdate = `${date.getFullYear()}-${('0' + (date.getMonth()+1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}T${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}`
+        setDatetime(currentdate)
+    }
+
+    const loadTimings = (timings) => {
+        return (
+            <div className="row">
+                {
+                    timings.map((time) => (
+                        <div className="col-3" key={time}>
+                            <div type="button" className="border text-center bg-secondary rounded-pill text-white p-1 m-2"
+                            onClick={() => handleLoadTime(time)}>
+                                {time >= 60 ? <div>{`${Math.floor(time/60)} hour`}</div>: <div>{`${time} min`}</div>}
+
+                            </div>
+                        </div>
+                    ))
+                }
+                
+            </div>
+        )
+    }
+
     return ( 
         <Modal scrollable={true} show={showAllPickupModal} onHide={handleClose} centered fullscreen={'md-down'}>
             <Modal.Body>
@@ -51,6 +77,7 @@ const AllPickupModal = ({pickup, pickups, setPickups, showAllPickupModal, setSho
                 <div className="mt-3">
                     <h6>{pickup.userMessage ? pickup.userMessage : 'No message'}</h6>
                 </div>
+                {loadTimings([10, 20, 30, 60])}
                 <input type='datetime-local' className="form-control" value={datetime} onChange={(e) => setDatetime(e.target.value)}/>
             </Modal.Body>
             <Modal.Footer>

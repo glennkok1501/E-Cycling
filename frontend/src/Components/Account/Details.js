@@ -14,6 +14,7 @@ const Details = ({account}) => {
                     <h3>{account.username}</h3>
                     <h4>{account.email}</h4>
                     <small className="text-muted">{`Joined since ${formatDate(account.createdAt)}`}</small>
+                    <h5 className="text-secondary mt-2"><strong>Points: {account.points}</strong></h5>
                 </div>
 
                 <div className="col-4">

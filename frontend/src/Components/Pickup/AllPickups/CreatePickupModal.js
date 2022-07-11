@@ -82,7 +82,11 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
             <Modal.Body>
 
                 <Error error={error} />
-
+                
+                <div className="text-center">
+                    <small className="text-muted">Please ensure that your image is clear as it will be processed by our AI</small>
+                </div>
+                
                 <ImageSelect image={image} setImage={setImage} />
                 
                 <select className="form-select" value={address} onChange={(e) => setAddress(e.target.value)}>

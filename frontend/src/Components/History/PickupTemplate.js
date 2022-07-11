@@ -27,6 +27,7 @@ const PickupTemplate = ({pickup, setPickup, setShowPickupModal}) => {
                         <strong className={STATUS[pickup.status]["text"]}>
                             {STATUS[pickup.status]["status"]}
                         </strong>
+                        {!pickup.rating && <><div className="ms-1">- No rating yet</div></>}
                         
                     </small>
 

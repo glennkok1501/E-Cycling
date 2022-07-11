@@ -23,8 +23,8 @@ const NavBar = () => {
                     <a href='/kidsarea' target="_blank" className='nav-link text-secondary'><strong>Kids Area</strong></a>
 
                     <div className='d-lg-none'>
-                        <Link to={`/account/${user._id}`} className='nav-link'>View Account</Link>
-                        <Link to="/history" className='nav-link'>History</Link>
+                        <Link to={`/account/${user._id}`} className='nav-link text-white'>View Account</Link>
+                        <Link to="/history" className='nav-link text-white'>History</Link>
                         <div className='nav-link text-danger'><Logout /></div>
                     </div>
 
