@@ -93,7 +93,7 @@ const Signup = () => {
     return ( 
         <Container>
             <div className='centered w-md-75'>
-                <Card variant="dark" bg="dark" text="light" className='shadow-lg'>
+                <Card variant="dark" bg="primary" text="light" className='shadow-lg'>
                     <Card.Body>
                         <div className='p-2 p-md-5'>
                             
@@ -127,7 +127,7 @@ const Signup = () => {
                                 </div>
 
                                 <div className='text-center mt-4'>
-                                    <Button variant='light' className='w-100' disabled={isPending} type="submit">
+                                    <Button variant='secondary' className='w-100' disabled={isPending} type="submit">
                                         {isPending ? <Spinner animation='border' size="sm" />: 'Register'}
                                     </Button>
                                 </div> 

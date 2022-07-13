@@ -6,14 +6,12 @@ import { Link } from "react-router-dom";
 import Error from "../../Utils/Error";
 import ImageSelect from "../../Utils/ImageSelect";
 
-const CreatePickupModal = ({showModal, setShowModal}) => {
+const SelfPickupModal = ({showModal, setShowModal}) => {
     
     const MAX_LENGTH = 256
 
-    const user = useSelector((state) => state.user.value)
     const [image, setImage] = useState(null)
     const [message, setMessage] = useState('')
-    const [address, setAddress] = useState('')
 
     const [isChecked, setIsChecked] = useState(false)
     const [error, setError] = useState('')
@@ -25,7 +23,6 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
         setError('')
         setImage(null)
         setMessage('')
-        setAddress('')
     }
 
     const handleSubmit = () => {
@@ -35,24 +32,13 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
             return
         }
 
-        if (address.length === 0) {
-            setError('Please select an address')
-            return
-        }
-
         setIsPending(true)
 
         const formData = new FormData()
         formData.append("image", image)
         formData.append("message", message)
-        for (var i = 0; i < user.addresses.length; i++) {
-            if (user.addresses[i].name === address) {
-                formData.append("address", JSON.stringify(user.addresses[i]))
-                break
-            }
-        }
 
-        axios.post(`${process.env.REACT_APP_API}/pickup`, formData, {
+        axios.post(`${process.env.REACT_APP_API}/pickup/self`, formData, {
             withCredentials: true,
             headers: {
                 "Content-Type": "multipart/form-data"
@@ -77,7 +63,7 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
     return ( 
         <Modal scrollable={true} show={showModal} onHide={handleClose} centered fullscreen={'md-down'}>
             <Modal.Header closeButton>
-                <h5>Create a pickup</h5>
+                <h5>Create a self-pickup (x1.5 points)</h5>
             </Modal.Header>
             <Modal.Body>
 
@@ -88,13 +74,6 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
                 </div>
                 
                 <ImageSelect image={image} setImage={setImage} />
-                
-                <select className="form-select" value={address} onChange={(e) => setAddress(e.target.value)}>
-                    <option>Address...</option>
-                    {user.addresses.map((a) => (
-                        <option key={a.name} value={a.name}>{a.name}</option>
-                    ))}
-                </select>
 
                 <div className="mt-3">
                     <textarea type='text' rows={5} maxLength={MAX_LENGTH} className="h-50 form-control" value={message} placeholder="Write a message..." onChange={(e) => setMessage(e.target.value)}/>
@@ -121,4 +100,4 @@ const CreatePickupModal = ({showModal, setShowModal}) => {
      );
 }
  
-export default CreatePickupModal;
+export default SelfPickupModal;

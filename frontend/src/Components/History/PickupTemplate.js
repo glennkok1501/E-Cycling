@@ -19,7 +19,7 @@ const PickupTemplate = ({pickup, setPickup, setShowPickupModal}) => {
         <div className="card mb-4">
             <div className="card-body">
                 <div onClick={handleSet}>
-                    <small className="text-muted d-flex align-items-center">
+                    <small className="text-muted d-flex align-items-center" title="created at">
                         <div className="me-auto">
                             <Icon size={1} path={mdiClockOutline} />
                             {formatDate(pickup.createdAt)}
@@ -27,10 +27,11 @@ const PickupTemplate = ({pickup, setPickup, setShowPickupModal}) => {
                         <strong className={STATUS[pickup.status]["text"]}>
                             {STATUS[pickup.status]["status"]}
                         </strong>
+                        {!pickup.rating && <><div className="ms-1">- No rating yet</div></>}
                         
                     </small>
 
-                    {pickup.datetime && <div className="mt-3">
+                    {pickup.datetime && <div className="mt-3" title="expected">
                         <Icon size={1} path={mdiCalendar} />
                         {new Date(pickup.datetime).toISOString().replace(/T/, ' ').replace(/\..+/, '')}
                     </div>}
@@ -47,7 +48,7 @@ const PickupTemplate = ({pickup, setPickup, setShowPickupModal}) => {
                 
 
                 <div className="d-flex justify-content-end">
-                    <a href={`https://google.com/maps/place/Singapore+${address.postalCode}`} target="_blank" rel="noreferrer">
+                    <a className="text-secondary" href={`https://google.com/maps/place/Singapore+${address.postalCode}`} target="_blank" rel="noreferrer">
                         Open in Google Maps
                     </a>
                 </div>

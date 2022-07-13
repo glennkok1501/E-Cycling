@@ -116,7 +116,7 @@ const CreateNoticeModal = ({showCreateModal, setShowCreateModal}) => {
                     </div>
                     
                     <div className="text-center">
-                        <Button variant="dark" className="w-100" type="submit">
+                        <Button variant="secondary" className="w-100" type="submit">
                         {isPending ? <Spinner animation='border' size="sm" />: 'Submit'}
                         </Button>
                     </div>

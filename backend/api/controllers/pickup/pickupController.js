@@ -1,4 +1,5 @@
 const Pickup = require("../../../models/Pickup")
+const User = require("../../../models/User")
 const { saveImage } = require("../File/imageHandler")
 
 const allPickups_get = async (req, res) => {
@@ -88,6 +89,11 @@ const rate_put = async (req, res) => {
         }
         pickup.rating = rating
         await pickup.save()
+
+        await updateUserPoints(pickup.vUserId, rating)
+
+        await updateUserPoints(pickup.UserId, 1)
+        
         res.sendStatus(200)
     }
     catch (err) {
@@ -96,11 +102,23 @@ const rate_put = async (req, res) => {
     } 
 }
 
+const updateUserPoints = async (userId, points) => {
+    try{
+        const user = await User.findOne({_id: userId})
+        user.points += points
+        await user.save()
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
 module.exports = {
     allPickups_get,
     pickupAccept_put,
     myPickups_get,
     pickupComplete_put,
     pickupsHistory_get,
-    rate_put
+    rate_put,
+    updateUserPoints
 }

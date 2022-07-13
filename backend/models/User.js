@@ -21,7 +21,11 @@ const userSchema = new Schema({
         "name": {type: String},
         "address": {type: String},
         "postalCode": {type: Number}
-    }]
+    }],
+    points: {
+        type: Number,
+        default: 0
+    }
 }, {timestamps: true})
 
 userSchema.pre('save', async function (next) {
