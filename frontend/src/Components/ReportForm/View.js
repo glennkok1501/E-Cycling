@@ -1,11 +1,4 @@
-import { useState } from "react";
-import ImageSelect from "../Utils/ImageSelect";
-
 const View = () => {
-
-    const [image, setImage] = useState(null)
-    const [body, setBody] = useState('')
-    const MAX_LENGTH = 512
     return ( 
         <div>
             
