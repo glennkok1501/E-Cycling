@@ -43,7 +43,7 @@ const Signup = () => {
         else {
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})/;
             if (!password.match(regex)) {
-                setError('Password does not match complexity')
+                setError('Password must be at least 8 digits and contain 1 Uppercase, 1 Lowercase, 1 Number, and 1 Symbol [! @ # $ etc.]')
                 return
             }
         }

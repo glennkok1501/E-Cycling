@@ -10,6 +10,8 @@ import History from './Pages/History/History';
 import NoticeBoard from './Pages/NoticeBoard/NoticeBoard';
 import Guidelines from './Pages/Guidelines/Guidelines';
 import Announcement from './Pages/Announcement/Announcement';
+import ReportForm from './Pages/Form/ReportForm';
+import RewardsPage from './Pages/Rewards/RewardsPage';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <ProtectedRoute path="/account/:id" component={Account}/>
         <ProtectedRoute path="/pickup" component={Pickup}/>
         <ProtectedRoute path="/history" component={History}/>
+        <ProtectedRoute path="/rewards" component={RewardsPage}/>
 
         <Route path="/noticeboard/:id">
           <Announcement />
@@ -30,6 +33,10 @@ function App() {
 
         <Route path="/guidelines">
           <Guidelines />
+        </Route>
+
+        <Route path="/report">
+          <ReportForm />
         </Route>
 
         <AuthRoute path="/login" component={Login} />
