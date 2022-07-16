@@ -30,7 +30,7 @@ const NavBar = () => {
                         <div className='nav-link text-danger'><Logout /></div>
                     </div>
                     
-                    <a href='/kidsarea' target="_blank" className='nav-link text-secondary'><strong>Kids Area</strong></a>
+                    <a href='https://tkot467we9d.typeform.com/to/ulfhp8wB' target="_blank" className='nav-link text-secondary'><strong>Kids Area</strong></a>
 
                 </Nav>
                 <div className='d-none d-lg-block'>
