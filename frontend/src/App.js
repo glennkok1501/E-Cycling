@@ -12,6 +12,7 @@ import Guidelines from './Pages/Guidelines/Guidelines';
 import Announcement from './Pages/Announcement/Announcement';
 import ReportForm from './Pages/Form/ReportForm';
 import RewardsPage from './Pages/Rewards/RewardsPage';
+import KidsAreaPage from './Pages/KidsArea/KidsAreaPage';
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
         <ProtectedRoute path="/pickup" component={Pickup}/>
         <ProtectedRoute path="/history" component={History}/>
         <ProtectedRoute path="/rewards" component={RewardsPage}/>
+
+        <Route path="/kidsarea">
+          <KidsAreaPage />
+        </Route>
 
         <Route path="/noticeboard/:id">
           <Announcement />

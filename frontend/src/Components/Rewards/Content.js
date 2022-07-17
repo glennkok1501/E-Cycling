@@ -5,12 +5,15 @@ import Store from "./Store";
 import { v4 as uuidv4 } from 'uuid';
 
 const Content = () => {
-    const data = Store()
+    const [data, setData] = useState(Store())
     const [selected, setSelected] = useState(null)
     const [code, setCode] = useState('')
 
-    const handleCode = () => {
+    const handleCode = (id) => {
         setCode(uuidv4())
+        setData(prev => {
+            return prev.map((p) => p._id === id ? {...p, stock: p.stock - 1} : p)
+        })
     }
 
     const handleClose = () => {
@@ -34,10 +37,12 @@ const Content = () => {
                 <Modal.Header closeButton>
                     <h5>Redeem Reward</h5>
                 </Modal.Header>
+                {selected &&
+                <>
                 <Modal.Body>
-                    {selected && <div>
+                    <div>
                     Do you want to redeem <strong>${selected.amount} {selected.name}</strong> for <strong>{selected.points} points</strong>?
-                    </div> }
+                    </div> 
                     {code && 
                     <div className="text-center mt-3">
                         <div className="form-control bg-dark text-white">
@@ -48,8 +53,10 @@ const Content = () => {
                     }
                 </Modal.Body>
                 <Modal.Footer>
-                    <div className={`btn btn-sm btn-success ${code && 'disabled'}`} onClick={handleCode}>Confirm</div>
+                    <div className={`btn btn-sm btn-success ${code && 'disabled'}`} onClick={() => handleCode(selected._id)}>Confirm</div>
                 </Modal.Footer>
+                </>
+                }
             </Modal>
         </>
         
