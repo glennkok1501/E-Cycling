@@ -17,7 +17,7 @@ const selfPickup_post = async (req, res) => {
 
         const image = await saveImage(fileData.image, 'pickup', null, 512)
         // points
-        const points = 8
+        const points = 7.5
         await updateUserPoints(decodedToken.id, points)
         const pickup = await Pickup.create({userMessage: message, userImage: image, UserId: decodedToken.id, status: 2, self: true, rating: points})
         res.send(pickup)
