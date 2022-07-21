@@ -104,9 +104,7 @@ const rate_put = async (req, res) => {
 
 const updateUserPoints = async (userId, points) => {
     try{
-        const user = await User.findOne({_id: userId})
-        user.points += points
-        await user.save()
+        await User.updateOne({_id: userId}, {$inc: {points}})
     }
     catch (err) {
         console.log(err)
